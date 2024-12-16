@@ -136,6 +136,38 @@ impl AppState {
             closure.forget();
         }
 
+        /* key pressed */
+        {
+            let events = self.events.clone();
+            let closure: Box<dyn FnMut(KeyboardEvent)> = Box::new(move |e: KeyboardEvent| {
+                let mut events = events.lock().unwrap();
+                events.push(InputEvent::KeyPressed(e.key_code()));
+                // this is for keys like tab that have some default effects
+                e.prevent_default();
+            });
+
+            let closure = Closure::wrap(closure);
+
+            canvas.set_onkeydown(Some(closure.as_ref().unchecked_ref()));
+
+            closure.forget();
+        }
+
+        /* key released */
+        {
+            let events = self.events.clone();
+            let closure: Box<dyn FnMut(KeyboardEvent)> = Box::new(move |e: KeyboardEvent| {
+                let mut events = events.lock().unwrap();
+                events.push(InputEvent::KeyReleased(e.key_code()));
+            });
+
+            let closure = Closure::wrap(closure);
+
+            canvas.set_onkeyup(Some(closure.as_ref().unchecked_ref()));
+
+            closure.forget();
+        }
+
         /* scroll */
         {
             let events = self.events.clone();
