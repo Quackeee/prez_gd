@@ -20,10 +20,11 @@ impl BasicBackground {
     }
 }
 
-#[allow(unused_variables)]
 impl ComponentLogic for BasicBackground {
     fn update(&mut self, _component: Weak<RefCell<Component>>, state: &crate::objects::app_state::AppState) {
-        // your code here
+        self.r = (state.time.elapsed_time.sin() / 2.0) + 0.5;
+        self.g = (state.time.elapsed_time.cos() / 2.0) + 0.5;
+        self.b = (state.time.elapsed_time.sin().cos() / 2.0) + 0.5;
     }
 
     fn draw(&self,_component: Weak<RefCell<Component>>, context: &web_sys::WebGl2RenderingContext) {
