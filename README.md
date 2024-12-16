@@ -4,7 +4,7 @@
 - Node i npm
 - zalecane visual studio code
 
-### Aby utuchomić:
+### Aby uruchomić:
 
 - w folderze projektu wywołać `npm i`
 - następnie `npm run serve` aby uruchomić projekt
