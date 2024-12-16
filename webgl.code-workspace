@@ -1,0 +1,41 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Serve",
+                "type": "shell",
+                "command": "npm",
+                "args": ["run", "serve"],
+                "isBackground": true,
+                "problemMatcher": "$ts-webpack-watch"
+            }
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "chrome",
+                "name": "Launch in Chrome",
+                "request": "launch",
+                "url": "http://localhost:8080",
+                "preLaunchTask": "Serve"
+            }
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "rust-lang.rust-analyzer",
+            "tamasfe.even-better-toml",
+            "dtoplak.vscode-glsllint",
+            "ms-vscode.wasm-dwarf-debugging",
+            "amodio.tsl-problem-matcher"
+        ]
+    }
+}
